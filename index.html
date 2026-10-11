@@ -368,11 +368,10 @@
         transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
         display: flex;
         flex-direction: column;
-        min-height: 200px;
       }
       .repo-card:hover { transform: translateY(-4px); box-shadow: var(--card-shadow-hover); }
-      .repo-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-      .repo-header svg { width: 18px; height: 18px; fill: var(--accent); flex-shrink: 0; }
+      .repo-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+      .repo-header svg { width: 20px; height: 20px; fill: var(--accent); flex-shrink: 0; }
       .repo-name {
         font-size: 1.05rem;
         font-weight: 700;
@@ -380,13 +379,6 @@
         word-break: break-word;
       }
       .repo-name:hover { color: var(--accent); }
-      .repo-desc {
-        font-size: 0.9rem;
-        color: var(--text-muted);
-        margin-bottom: 14px;
-        flex-grow: 1;
-        line-height: 1.5;
-      }
       .repo-meta {
         display: flex;
         flex-wrap: wrap;
@@ -396,6 +388,7 @@
         color: var(--text-muted);
         padding-top: 12px;
         border-top: 1px solid var(--border);
+        margin-top: auto;
       }
       .repo-lang { display: inline-flex; align-items: center; gap: 6px; }
       .lang-dot { width: 10px; height: 10px; border-radius: 50%; }
@@ -1205,7 +1198,6 @@
             const lang = repo.language;
             const color = (lang && LANG_COLORS[lang]) || '#8b949e';
             const langHtml = lang ? `<span class="repo-lang"><span class="lang-dot" style="background:${color}"></span>${escapeHtml(lang)}</span>` : '';
-            const desc = repo.description ? escapeHtml(repo.description) : '<em>No description provided.</em>';
 
             return `
               <div class="repo-card">
@@ -1215,7 +1207,6 @@
                   </svg>
                   <a class="repo-name" href="${escapeHtml(repo.html_url)}" target="_blank" rel="noopener">${escapeHtml(repo.name)}</a>
                 </div>
-                <p class="repo-desc">${desc}</p>
                 <div class="repo-meta">
                   ${langHtml}
                   <span class="repo-meta-item">
