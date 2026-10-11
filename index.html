@@ -249,7 +249,6 @@
       }
       .project-card:hover { transform: translateY(-5px); box-shadow: var(--card-shadow-hover); }
 
-      /* PROJECT IMAGE */
       .project-image {
         width: 100%;
         aspect-ratio: 16 / 9;
@@ -265,9 +264,7 @@
         display: block;
         transition: transform 0.4s ease;
       }
-      .project-card:hover .project-image img {
-        transform: scale(1.04);
-      }
+      .project-card:hover .project-image img { transform: scale(1.04); }
       .project-image::after {
         content: "🔍 Click to enlarge";
         position: absolute;
@@ -425,11 +422,19 @@
         padding: 22px;
         box-shadow: var(--card-shadow);
         border-left: 4px solid var(--accent);
-        transition: transform 0.2s ease, background 0.3s ease;
+        transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.2s ease;
         display: flex;
         flex-direction: column;
+        text-decoration: none;
+        color: inherit;
+        position: relative;
       }
-      .cert-card:hover { transform: translateY(-4px); }
+      .cert-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--card-shadow-hover);
+        text-decoration: none;
+        color: inherit;
+      }
       .cert-badge {
         display: inline-flex;
         align-items: center;
@@ -443,7 +448,7 @@
         margin-bottom: 12px;
       }
       .cert-title {
-        font-size: 1rem;
+        font-size: 0.98rem;
         font-weight: 700;
         color: var(--heading);
         margin-bottom: 6px;
@@ -451,6 +456,12 @@
       }
       .cert-issuer { font-size: 0.85rem; color: var(--text-muted); }
       .cert-issuer strong { color: var(--text); font-weight: 600; }
+      .cert-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 12px;
+      }
       .cert-year {
         display: inline-block;
         background: var(--tag-bg);
@@ -459,9 +470,15 @@
         border-radius: 10px;
         font-size: 0.75rem;
         font-weight: 600;
-        margin-top: 10px;
-        align-self: flex-start;
       }
+      .cert-verify {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--accent);
+        opacity: 0.85;
+      }
+      .cert-card:hover .cert-verify { opacity: 1; }
+
       .cert-cta-wrapper { text-align: center; margin-top: 30px; }
       .cert-cta-wrapper .btn {
         background: var(--accent);
@@ -470,6 +487,124 @@
         font-weight: 600;
       }
       .cert-cta-wrapper .btn:hover { background: var(--accent-hover); }
+
+      /* CERT MODAL */
+      .cert-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1500;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        animation: fadeIn 0.2s ease;
+      }
+      .cert-modal.open { display: flex; }
+      .cert-modal-content {
+        background: var(--bg);
+        border-radius: 14px;
+        max-width: 720px;
+        width: 100%;
+        max-height: 88vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+      }
+      .cert-modal-header {
+        padding: 20px 24px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--bg-alt);
+      }
+      .cert-modal-header h3 {
+        font-size: 1.15rem;
+        color: var(--heading);
+        font-weight: 700;
+      }
+      .cert-modal-close {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: transparent;
+        border: none;
+        color: var(--text-muted);
+        font-size: 22px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s ease;
+      }
+      .cert-modal-close:hover {
+        background: var(--tag-bg);
+        color: var(--tag-text);
+      }
+      .cert-modal-list {
+        padding: 16px 24px 24px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .cert-list-item {
+        display: flex;
+        gap: 14px;
+        padding: 14px;
+        border-radius: 10px;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        transition: transform 0.15s ease, border-color 0.2s ease, background 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+      }
+      .cert-list-item:hover {
+        transform: translateX(4px);
+        border-color: var(--accent);
+        text-decoration: none;
+        color: inherit;
+      }
+      .cert-list-icon {
+        flex-shrink: 0;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background: var(--tag-bg);
+        color: var(--tag-text);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+      }
+      .cert-list-body { flex-grow: 1; min-width: 0; }
+      .cert-list-title {
+        font-weight: 700;
+        font-size: 0.92rem;
+        color: var(--heading);
+        line-height: 1.35;
+        margin-bottom: 4px;
+      }
+      .cert-list-meta {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+      .cert-list-meta strong { color: var(--text); font-weight: 600; }
+      .cert-modal-footer {
+        padding: 16px 24px;
+        border-top: 1px solid var(--border);
+        background: var(--bg-alt);
+        text-align: center;
+      }
+      .cert-modal-footer .btn {
+        background: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        padding: 10px 20px;
+      }
+      .cert-modal-footer .btn:hover { background: var(--accent-hover); }
 
       /* CONTACT */
       .contact-section { background: var(--bg-alt); transition: background 0.3s ease; }
@@ -507,6 +642,9 @@
         .theme-toggle { top: 12px; right: 12px; width: 40px; height: 40px; font-size: 18px; }
         .lightbox { padding: 20px 10px; }
         .lightbox-close { top: 10px; right: 10px; }
+        .cert-modal-content { max-height: 92vh; }
+        .cert-list-item { padding: 12px; }
+        .cert-list-icon { width: 36px; height: 36px; font-size: 16px; }
       }
     </style>
   </head>
@@ -712,54 +850,168 @@
         <h2>Certifications</h2>
         <div class="certs-grid">
 
-          <div class="cert-card">
+          <a class="cert-card" href="https://www.jobaajlearnings.com/certificate?file=certificate-404805-84-0.jpeg" target="_blank" rel="noopener">
             <div class="cert-badge">📊</div>
-            <div class="cert-title">Microsoft Certified: Power BI Data Analyst Associate</div>
-            <div class="cert-issuer"><strong>Microsoft</strong></div>
-            <span class="cert-year">2024</span>
-          </div>
+            <div class="cert-title">Microsoft Power BI — Beginner to Advanced</div>
+            <div class="cert-issuer"><strong>Jobaaj Learnings</strong></div>
+            <div class="cert-footer">
+              <span class="cert-year">2025</span>
+              <span class="cert-verify">Verify →</span>
+            </div>
+          </a>
 
-          <div class="cert-card">
-            <div class="cert-badge">🔍</div>
-            <div class="cert-title">Google Data Analytics Professional Certificate</div>
-            <div class="cert-issuer"><strong>Google / Coursera</strong></div>
-            <span class="cert-year">2024</span>
-          </div>
-
-          <div class="cert-card">
+          <a class="cert-card" href="https://www.jobaajlearnings.com/certificate?file=certificate-404805-59-0.jpeg" target="_blank" rel="noopener">
             <div class="cert-badge">🗄️</div>
-            <div class="cert-title">SQL for Data Science</div>
-            <div class="cert-issuer"><strong>Coursera</strong></div>
-            <span class="cert-year">2024</span>
-          </div>
+            <div class="cert-title">Zero to Hero in SQL</div>
+            <div class="cert-issuer"><strong>Jobaaj Learnings</strong></div>
+            <div class="cert-footer">
+              <span class="cert-year">2025</span>
+              <span class="cert-verify">Verify →</span>
+            </div>
+          </a>
 
-          <div class="cert-card">
+          <a class="cert-card" href="https://www.jobaajlearnings.com/certificate?file=certificate-404805-89-0.jpeg" target="_blank" rel="noopener">
             <div class="cert-badge">📈</div>
-            <div class="cert-title">Excel Skills for Business Specialization</div>
-            <div class="cert-issuer"><strong>Macquarie University / Coursera</strong></div>
-            <span class="cert-year">2024</span>
-          </div>
+            <div class="cert-title">Microsoft Excel — Complete Mastery</div>
+            <div class="cert-issuer"><strong>Jobaaj Learnings</strong></div>
+            <div class="cert-footer">
+              <span class="cert-year">2025</span>
+              <span class="cert-verify">Verify →</span>
+            </div>
+          </a>
 
-          <div class="cert-card">
+          <a class="cert-card" href="https://www.theforage.com/completion-certificates/ifobHAoMjQs9s6bKS/MyXvBcppsW2FkNYCX_ifobHAoMjQs9s6bKS_yXyaZx9Hne9XHQtDE_1768395713712_completion_certificate.pdf" target="_blank" rel="noopener">
+            <div class="cert-badge">🏢</div>
+            <div class="cert-title">Tata — Data Visualisation: Empowering Business with Effective Insights</div>
+            <div class="cert-issuer"><strong>Forage</strong></div>
+            <div class="cert-footer">
+              <span class="cert-year">2026</span>
+              <span class="cert-verify">Verify →</span>
+            </div>
+          </a>
+
+          <a class="cert-card" href="https://www.theforage.com/completion-certificates/SKZxezskWgmFjRvj9/Tcz8gTtprzAS4xSoK_SKZxezskWgmFjRvj9_yXyaZx9Hne9XHQtDE_1768757313582_completion_certificate.pdf" target="_blank" rel="noopener">
+            <div class="cert-badge">🧪</div>
+            <div class="cert-title">BCG — Data Science Job Simulation</div>
+            <div class="cert-issuer"><strong>Forage</strong></div>
+            <div class="cert-footer">
+              <span class="cert-year">2026</span>
+              <span class="cert-verify">Verify →</span>
+            </div>
+          </a>
+
+          <a class="cert-card" href="https://www.jobaajlearnings.com/certificate?file=certificate-404805-100-0.jpeg" target="_blank" rel="noopener">
             <div class="cert-badge">🎯</div>
-            <div class="cert-title">Data Analyst Certification</div>
-            <div class="cert-issuer"><strong>Great Learning</strong></div>
-            <span class="cert-year">2024</span>
-          </div>
-
-          <div class="cert-card">
-            <div class="cert-badge">🧠</div>
-            <div class="cert-title">Introduction to Data Science</div>
-            <div class="cert-issuer"><strong>Cisco Networking Academy</strong></div>
-            <span class="cert-year">2024</span>
-          </div>
+            <div class="cert-title">Tableau — Beginner to Advanced</div>
+            <div class="cert-issuer"><strong>Jobaaj Learnings</strong></div>
+            <div class="cert-footer">
+              <span class="cert-year">2026</span>
+              <span class="cert-verify">Verify →</span>
+            </div>
+          </a>
 
         </div>
         <div class="cert-cta-wrapper">
-          <a href="https://www.linkedin.com/in/abhishekpanwar91/details/certifications/" target="_blank" rel="noopener" class="btn">View All Certifications on LinkedIn →</a>
+          <button class="btn" id="viewAllCertsBtn" type="button">View All 10 Certifications →</button>
         </div>
       </div>
     </section>
+
+    <!-- CERTIFICATIONS MODAL -->
+    <div class="cert-modal" id="certModal" role="dialog" aria-modal="true" aria-labelledby="certModalTitle">
+      <div class="cert-modal-content" onclick="event.stopPropagation()">
+        <div class="cert-modal-header">
+          <h3 id="certModalTitle">All Certifications</h3>
+          <button class="cert-modal-close" id="certModalClose" aria-label="Close">✕</button>
+        </div>
+        <div class="cert-modal-list">
+
+          <a class="cert-list-item" href="https://www.jobaajlearnings.com/certificate?file=certificate-404805-84-0.jpeg" target="_blank" rel="noopener">
+            <span class="cert-list-icon">📊</span>
+            <div class="cert-list-body">
+              <div class="cert-list-title">Microsoft Power BI — Beginner to Advanced</div>
+              <div class="cert-list-meta"><strong>Jobaaj Learnings</strong> · 2025</div>
+            </div>
+          </a>
+
+          <a class="cert-list-item" href="https://www.jobaajlearnings.com/certificate?file=certificate-404805-112-0.jpeg" target="_blank" rel="noopener">
+            <span class="cert-list-icon">🤖</span>
+            <div class="cert-list-body">
+              <div class="cert-list-title">Generative AI: Build Anything From Scratch</div>
+              <div class="cert-list-meta"><strong>Jobaaj Learnings</strong> · 2026</div>
+            </div>
+          </a>
+
+          <a class="cert-list-item" href="https://www.jobaajlearnings.com/certificate?file=certificate-404805-50-0.jpeg" target="_blank" rel="noopener">
+            <span class="cert-list-icon">🐍</span>
+            <div class="cert-list-body">
+              <div class="cert-list-title">Data Analytics with NumPy, Pandas and Matplotlib</div>
+              <div class="cert-list-meta"><strong>Jobaaj Learnings</strong> · 2026</div>
+            </div>
+          </a>
+
+          <a class="cert-list-item" href="https://www.jobaajlearnings.com/certificate?file=certificate-404805-59-0.jpeg" target="_blank" rel="noopener">
+            <span class="cert-list-icon">🗄️</span>
+            <div class="cert-list-body">
+              <div class="cert-list-title">Zero to Hero in SQL</div>
+              <div class="cert-list-meta"><strong>Jobaaj Learnings</strong> · 2025</div>
+            </div>
+          </a>
+
+          <a class="cert-list-item" href="https://www.jobaajlearnings.com/certificate?file=certificate-404805-89-0.jpeg" target="_blank" rel="noopener">
+            <span class="cert-list-icon">📈</span>
+            <div class="cert-list-body">
+              <div class="cert-list-title">Microsoft Excel — Complete Mastery</div>
+              <div class="cert-list-meta"><strong>Jobaaj Learnings</strong> · 2025</div>
+            </div>
+          </a>
+
+          <a class="cert-list-item" href="https://www.theforage.com/completion-certificates/ifobHAoMjQs9s6bKS/MyXvBcppsW2FkNYCX_ifobHAoMjQs9s6bKS_yXyaZx9Hne9XHQtDE_1768395713712_completion_certificate.pdf" target="_blank" rel="noopener">
+            <span class="cert-list-icon">🏢</span>
+            <div class="cert-list-body">
+              <div class="cert-list-title">Tata — Data Visualisation: Empowering Business with Effective Insights</div>
+              <div class="cert-list-meta"><strong>Forage</strong> · 2026</div>
+            </div>
+          </a>
+
+          <a class="cert-list-item" href="https://www.theforage.com/completion-certificates/SKZxezskWgmFjRvj9/Tcz8gTtprzAS4xSoK_SKZxezskWgmFjRvj9_yXyaZx9Hne9XHQtDE_1768757313582_completion_certificate.pdf" target="_blank" rel="noopener">
+            <span class="cert-list-icon">🧪</span>
+            <div class="cert-list-body">
+              <div class="cert-list-title">BCG — Data Science Job Simulation</div>
+              <div class="cert-list-meta"><strong>Forage</strong> · 2026</div>
+            </div>
+          </a>
+
+          <a class="cert-list-item" href="https://www.jobaajlearnings.com/certificate?file=certificate-404805-92-0.jpeg" target="_blank" rel="noopener">
+            <span class="cert-list-icon">📋</span>
+            <div class="cert-list-body">
+              <div class="cert-list-title">Product Management</div>
+              <div class="cert-list-meta"><strong>Jobaaj Learnings</strong> · 2025</div>
+            </div>
+          </a>
+
+          <a class="cert-list-item" href="https://www.jobaajlearnings.com/certificate?file=certificate-404805-97-0.jpeg" target="_blank" rel="noopener">
+            <span class="cert-list-icon">📉</span>
+            <div class="cert-list-body">
+              <div class="cert-list-title">How to Build Dashboard Using Looker Studio</div>
+              <div class="cert-list-meta"><strong>Jobaaj Learnings</strong> · 2025</div>
+            </div>
+          </a>
+
+          <a class="cert-list-item" href="https://www.jobaajlearnings.com/certificate?file=certificate-404805-100-0.jpeg" target="_blank" rel="noopener">
+            <span class="cert-list-icon">🎯</span>
+            <div class="cert-list-body">
+              <div class="cert-list-title">Tableau — Beginner to Advanced</div>
+              <div class="cert-list-meta"><strong>Jobaaj Learnings</strong> · 2026</div>
+            </div>
+          </a>
+
+        </div>
+        <div class="cert-modal-footer">
+          <a href="https://www.linkedin.com/in/abhishekpanwar91/details/certifications/" target="_blank" rel="noopener" class="btn">View on LinkedIn →</a>
+        </div>
+      </div>
+    </div>
 
     <!-- CONTACT -->
     <section id="contact" class="contact-section fade-in">
@@ -872,19 +1124,31 @@
         setTimeout(() => { lightboxImage.src = ''; }, 200);
       }
 
-      lightboxClose.addEventListener('click', (e) => {
-        e.stopPropagation();
-        closeLightbox();
-      });
-
-      lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) closeLightbox();
-      });
-
+      lightboxClose.addEventListener('click', (e) => { e.stopPropagation(); closeLightbox(); });
+      lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lightbox.classList.contains('open')) {
-          closeLightbox();
-        }
+        if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+      });
+
+      /* CERTIFICATIONS MODAL */
+      const certModal = document.getElementById('certModal');
+      const viewAllCertsBtn = document.getElementById('viewAllCertsBtn');
+      const certModalClose = document.getElementById('certModalClose');
+
+      viewAllCertsBtn.addEventListener('click', () => {
+        certModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+
+      function closeCertModal() {
+        certModal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      certModalClose.addEventListener('click', closeCertModal);
+      certModal.addEventListener('click', (e) => { if (e.target === certModal) closeCertModal(); });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && certModal.classList.contains('open')) closeCertModal();
       });
 
       /* GITHUB REPOS */
