@@ -9,13 +9,13 @@
     <meta name="keywords" content="freelance data analyst, Power BI developer, SQL analyst, Excel reporting, dashboard developer" />
     <meta name="author" content="Abhishek Panwar" />
 
-    <!-- Open Graph (for LinkedIn / WhatsApp preview) -->
+    <!-- Open Graph -->
     <meta property="og:title" content="Abhishek Panwar | Freelance Data Analyst" />
     <meta property="og:description" content="Turning messy data into clear Power BI dashboards and SQL insights." />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="./assets/abhishek.jpeg" />
 
     <style>
-      /* ---------- RESET & BASE ---------- */
       * { margin: 0; padding: 0; box-sizing: border-box; }
       html { scroll-behavior: smooth; }
       body {
@@ -27,7 +27,6 @@
       a { color: #2563eb; text-decoration: none; }
       a:hover { text-decoration: underline; }
 
-      /* ---------- LAYOUT ---------- */
       .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
       section { padding: 60px 0; }
 
@@ -38,8 +37,20 @@
         padding: 80px 0 60px;
         text-align: center;
       }
+
+      .profile-photo {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid rgba(255,255,255,0.85);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+        margin-bottom: 20px;
+      }
+
       header h1 { font-size: 2.5rem; margin-bottom: 12px; }
       header p.tagline { font-size: 1.15rem; opacity: 0.9; margin-bottom: 24px; }
+
       .btn {
         display: inline-block;
         background: #fff;
@@ -47,14 +58,36 @@
         padding: 12px 24px;
         border-radius: 6px;
         font-weight: 600;
-        transition: transform 0.15s ease;
+        transition: transform 0.15s ease, background 0.2s ease;
+        margin: 4px;
       }
       .btn:hover { transform: translateY(-2px); text-decoration: none; }
-      .btn.outline {
-        background: transparent;
-        color: #fff;
-        border: 2px solid #fff;
-        margin-left: 10px;
+      .btn.outline { background: transparent; color: #fff; border: 2px solid #fff; }
+      .btn.resume { background: #10b981; color: #fff; }
+      .btn.resume:hover { background: #059669; }
+
+      /* ---------- SOCIAL ICONS ---------- */
+      .social-links {
+        margin-top: 26px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 18px;
+      }
+      .social-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.15);
+        transition: background 0.2s ease, transform 0.2s ease;
+        font-size: 22px;
+      }
+      .social-links a:hover {
+        background: rgba(255,255,255,0.3);
+        transform: translateY(-3px);
       }
 
       /* ---------- ABOUT ---------- */
@@ -81,7 +114,9 @@
         border-radius: 10px;
         box-shadow: 0 2px 8px rgba(0,0,0,0.06);
         border-left: 4px solid #2563eb;
+        transition: transform 0.2s ease;
       }
+      .skill-card:hover { transform: translateY(-4px); }
       .skill-card h3 { color: #1e3a8a; margin-bottom: 8px; font-size: 1.1rem; }
       .skill-card p { font-size: 0.95rem; color: #4b5563; }
 
@@ -118,8 +153,10 @@
 
       /* ---------- CONTACT ---------- */
       .contact { text-align: center; }
-      .contact .btn { background: #2563eb; color: #fff; }
+      .contact .btn { background: #2563eb; color: #fff; margin: 6px; }
       .contact .btn:hover { background: #1e40af; }
+      .contact .btn.secondary { background: #111827; }
+      .contact .btn.secondary:hover { background: #000; }
 
       /* ---------- FOOTER ---------- */
       footer {
@@ -129,11 +166,15 @@
         padding: 24px 0;
         font-size: 0.9rem;
       }
+      footer .social-links { margin-top: 14px; }
+      footer .social-links a { background: rgba(255,255,255,0.08); }
+      footer .social-links a:hover { background: rgba(255,255,255,0.18); }
 
       @media (max-width: 600px) {
         header h1 { font-size: 1.8rem; }
         header { padding: 60px 0 40px; }
         section { padding: 40px 0; }
+        .profile-photo { width: 130px; height: 130px; }
       }
     </style>
   </head>
@@ -142,10 +183,19 @@
     <!-- ========== HEADER ========== -->
     <header>
       <div class="container">
+        <img src="./assets/abhishek.jpeg" alt="Abhishek Panwar" class="profile-photo" />
+
         <h1>Abhishek Panwar</h1>
         <p class="tagline">Freelance Data Analyst — Power BI &amp; SQL</p>
+
         <a href="#contact" class="btn">Hire Me</a>
         <a href="#projects" class="btn outline">View Work</a>
+        <a href="./assets/Abhishek.pdf" download class="btn resume">📄 Download Resume</a>
+
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME/" target="_blank" rel="noopener" aria-label="LinkedIn">💼</a>
+          <a href="https://github.com/YOUR-GITHUB-USERNAME" target="_blank" rel="noopener" aria-label="GitHub">🐙</a>
+        </div>
       </div>
     </header>
 
@@ -188,7 +238,6 @@
       <div class="container">
         <h2>Selected Projects</h2>
         <div class="projects-grid">
-
           <div class="project-card">
             <h3>Sales Performance Dashboard</h3>
             <p>End-to-end Power BI dashboard tracking revenue, margins, and regional performance with YoY comparisons.</p>
@@ -196,21 +245,18 @@
             <span class="tag">DAX</span>
             <span class="tag">SQL</span>
           </div>
-
           <div class="project-card">
             <h3>Customer Churn Analysis</h3>
             <p>Identified at-risk customer segments using SQL cohort analysis and visualised retention trends in Power BI.</p>
             <span class="tag">SQL</span>
             <span class="tag">Power BI</span>
           </div>
-
           <div class="project-card">
             <h3>Automated Excel Reporting</h3>
             <p>Replaced manual weekly reports with a Power Query pipeline, cutting preparation time from 4 hours to 10 minutes.</p>
             <span class="tag">Excel</span>
             <span class="tag">Power Query</span>
           </div>
-
         </div>
       </div>
     </section>
@@ -221,6 +267,7 @@
         <h2>Let's Work Together</h2>
         <p style="margin-bottom:20px;">Have a data problem you'd like solved? Let's talk.</p>
         <a href="mailto:your-email@example.com" class="btn">Email Me</a>
+        <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME/" target="_blank" rel="noopener" class="btn secondary">Connect on LinkedIn</a>
       </div>
     </section>
 
@@ -228,6 +275,10 @@
     <footer>
       <div class="container">
         © <span id="year"></span> Abhishek Panwar — All rights reserved.
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME/" target="_blank" rel="noopener" aria-label="LinkedIn">💼</a>
+          <a href="https://github.com/YOUR-GITHUB-USERNAME" target="_blank" rel="noopener" aria-label="GitHub">🐙</a>
+        </div>
       </div>
     </footer>
 
