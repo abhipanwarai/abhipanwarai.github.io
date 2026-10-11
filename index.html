@@ -210,18 +210,31 @@
       .stat-label { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
 
       /* SKILLS */
-      .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 20px; }
+      .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; margin-top: 20px; }
       .skill-card {
         background: var(--card-bg);
-        padding: 22px;
+        padding: 24px;
         border-radius: 10px;
         box-shadow: var(--card-shadow);
         border-left: 4px solid var(--accent);
         transition: transform 0.2s ease, background 0.3s ease;
+        display: flex;
+        flex-direction: column;
       }
       .skill-card:hover { transform: translateY(-4px); }
-      .skill-card h3 { color: var(--heading); margin-bottom: 8px; font-size: 1.1rem; }
-      .skill-card p { font-size: 0.95rem; color: var(--text-muted); }
+      .skill-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        background: var(--tag-bg);
+        font-size: 22px;
+        margin-bottom: 12px;
+      }
+      .skill-card h3 { color: var(--heading); margin-bottom: 10px; font-size: 1.1rem; }
+      .skill-card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.55; }
 
       /* PROJECTS */
       .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; margin-top: 20px; }
@@ -468,27 +481,48 @@
       </div>
     </section>
 
-    <!-- SKILLS -->
+    <!-- WHAT I DO -->
     <section style="background:var(--bg-alt);" class="fade-in">
       <div class="container">
         <h2>What I Do</h2>
         <div class="skills-grid">
+
           <div class="skill-card">
-            <h3>Power BI Dashboards</h3>
-            <p>Interactive, mobile-friendly dashboards with DAX measures, drill-throughs, and row-level security.</p>
+            <div class="skill-icon">🧹</div>
+            <h3>Data Cleaning &amp; Preparation</h3>
+            <p>I clean, organize, and structure raw business data so it becomes accurate, consistent, and ready for analysis — removing duplicates, fixing errors, standardizing formats, and preparing data from Excel, Google Sheets, SQL databases, and other sources.</p>
           </div>
+
           <div class="skill-card">
-            <h3>SQL Analysis</h3>
-            <p>Complex queries, joins, window functions, and stored procedures on MySQL, PostgreSQL, and SQL Server.</p>
+            <div class="skill-icon">🗄️</div>
+            <h3>SQL &amp; Python Analysis</h3>
+            <p>I write SQL queries to extract, join, filter, and analyze data from databases, and use Python for deeper analysis, automation, and repeatable reporting workflows — uncovering trends, patterns, and answers hidden inside your business data.</p>
           </div>
+
           <div class="skill-card">
-            <h3>Excel Reporting</h3>
-            <p>Pivot tables, Power Query, dynamic formulas, and automated report templates your team can reuse.</p>
+            <div class="skill-icon">📊</div>
+            <h3>Power BI, Tableau &amp; Looker Dashboards</h3>
+            <p>I design interactive dashboards that make it easy to track sales, operations, marketing, finance, and other key business metrics. Instead of static reports, you get a clear visual view of what's happening and what needs attention.</p>
           </div>
+
           <div class="skill-card">
-            <h3>Data Cleaning</h3>
-            <p>Turning raw exports into analysis-ready datasets — deduping, standardising, and validating.</p>
+            <div class="skill-icon">📈</div>
+            <h3>Excel &amp; Google Sheets Reporting</h3>
+            <p>I build advanced Excel and Google Sheets reports, trackers, and automated templates — including dynamic dashboards, formulas, pivot tables, charts, and report automation for teams that need simple, practical reporting.</p>
           </div>
+
+          <div class="skill-card">
+            <div class="skill-icon">⚙️</div>
+            <h3>Automated Reports &amp; Analytics Support</h3>
+            <p>I reduce manual reporting work by creating automated or semi-automated reporting solutions, and provide ongoing analytics support for businesses that need regular dashboards, monthly reports, or help understanding their data.</p>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-icon">🏗️</div>
+            <h3>Modern Data Platforms</h3>
+            <p>I work with tools like Microsoft Fabric and Databricks to support scalable data analysis and reporting workflows — ideal for businesses ready to move beyond basic spreadsheets and build a more structured analytics setup.</p>
+          </div>
+
         </div>
       </div>
     </section>
