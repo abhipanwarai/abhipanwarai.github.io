@@ -7,9 +7,232 @@
     <title>Abhishek Panwar | Freelance Data Analyst — Power BI &amp; SQL</title>
     <meta name="description" content="Abhishek Panwar is a freelance data analyst helping businesses turn messy data into clear Power BI dashboards, reliable Excel reports and SQL insights." />
     <meta name="keywords" content="freelance data analyst, Power BI developer, SQL analyst, Excel reporting, dashboard developer" />
+    <meta name="author" content="Abhishek Panwar" />
+
+    <!-- Open Graph (for LinkedIn / WhatsApp preview) -->
+    <meta property="og:title" content="Abhishek Panwar | Freelance Data Analyst" />
+    <meta property="og:description" content="Turning messy data into clear Power BI dashboards and SQL insights." />
+    <meta property="og:type" content="website" />
+
+    <style>
+      /* ---------- RESET & BASE ---------- */
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        color: #1f2937;
+        background: #f9fafb;
+      }
+      a { color: #2563eb; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+
+      /* ---------- LAYOUT ---------- */
+      .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+      section { padding: 60px 0; }
+
+      /* ---------- HEADER ---------- */
+      header {
+        background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+        color: #fff;
+        padding: 80px 0 60px;
+        text-align: center;
+      }
+      header h1 { font-size: 2.5rem; margin-bottom: 12px; }
+      header p.tagline { font-size: 1.15rem; opacity: 0.9; margin-bottom: 24px; }
+      .btn {
+        display: inline-block;
+        background: #fff;
+        color: #1e3a8a;
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-weight: 600;
+        transition: transform 0.15s ease;
+      }
+      .btn:hover { transform: translateY(-2px); text-decoration: none; }
+      .btn.outline {
+        background: transparent;
+        color: #fff;
+        border: 2px solid #fff;
+        margin-left: 10px;
+      }
+
+      /* ---------- ABOUT ---------- */
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        color: #1e3a8a;
+        border-bottom: 3px solid #2563eb;
+        display: inline-block;
+        padding-bottom: 4px;
+      }
+      .about p { margin-bottom: 14px; font-size: 1.05rem; }
+
+      /* ---------- SKILLS ---------- */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+      .skill-card {
+        background: #fff;
+        padding: 22px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        border-left: 4px solid #2563eb;
+      }
+      .skill-card h3 { color: #1e3a8a; margin-bottom: 8px; font-size: 1.1rem; }
+      .skill-card p { font-size: 0.95rem; color: #4b5563; }
+
+      /* ---------- PROJECTS ---------- */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 22px;
+        margin-top: 20px;
+      }
+      .project-card {
+        background: #fff;
+        border-radius: 10px;
+        padding: 24px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .project-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      }
+      .project-card h3 { color: #1e3a8a; margin-bottom: 10px; }
+      .project-card p { color: #4b5563; font-size: 0.95rem; margin-bottom: 12px; }
+      .tag {
+        display: inline-block;
+        background: #dbeafe;
+        color: #1e40af;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        margin-right: 6px;
+        margin-bottom: 6px;
+      }
+
+      /* ---------- CONTACT ---------- */
+      .contact { text-align: center; }
+      .contact .btn { background: #2563eb; color: #fff; }
+      .contact .btn:hover { background: #1e40af; }
+
+      /* ---------- FOOTER ---------- */
+      footer {
+        background: #111827;
+        color: #9ca3af;
+        text-align: center;
+        padding: 24px 0;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 600px) {
+        header h1 { font-size: 1.8rem; }
+        header { padding: 60px 0 40px; }
+        section { padding: 40px 0; }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+
+    <!-- ========== HEADER ========== -->
+    <header>
+      <div class="container">
+        <h1>Abhishek Panwar</h1>
+        <p class="tagline">Freelance Data Analyst — Power BI &amp; SQL</p>
+        <a href="#contact" class="btn">Hire Me</a>
+        <a href="#projects" class="btn outline">View Work</a>
+      </div>
+    </header>
+
+    <!-- ========== ABOUT ========== -->
+    <section class="about">
+      <div class="container">
+        <h2>About Me</h2>
+        <p>I help businesses turn messy, scattered data into clear dashboards and reliable reports. With hands-on experience in <strong>Power BI</strong>, <strong>SQL</strong>, and <strong>Excel</strong>, I build analytics solutions that answer the questions decision-makers actually care about.</p>
+        <p>Whether you need a one-time dashboard, a recurring reporting pipeline, or an audit of your existing metrics — I deliver work that's clean, fast, and easy for your team to own.</p>
+      </div>
+    </section>
+
+    <!-- ========== SKILLS ========== -->
+    <section style="background:#fff;">
+      <div class="container">
+        <h2>What I Do</h2>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h3>Power BI Dashboards</h3>
+            <p>Interactive, mobile-friendly dashboards with DAX measures, drill-throughs, and row-level security.</p>
+          </div>
+          <div class="skill-card">
+            <h3>SQL Analysis</h3>
+            <p>Complex queries, joins, window functions, and stored procedures on MySQL, PostgreSQL, and SQL Server.</p>
+          </div>
+          <div class="skill-card">
+            <h3>Excel Reporting</h3>
+            <p>Pivot tables, Power Query, dynamic formulas, and automated report templates your team can reuse.</p>
+          </div>
+          <div class="skill-card">
+            <h3>Data Cleaning</h3>
+            <p>Turning raw exports into analysis-ready datasets — deduping, standardising, and validating.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PROJECTS ========== -->
+    <section id="projects">
+      <div class="container">
+        <h2>Selected Projects</h2>
+        <div class="projects-grid">
+
+          <div class="project-card">
+            <h3>Sales Performance Dashboard</h3>
+            <p>End-to-end Power BI dashboard tracking revenue, margins, and regional performance with YoY comparisons.</p>
+            <span class="tag">Power BI</span>
+            <span class="tag">DAX</span>
+            <span class="tag">SQL</span>
+          </div>
+
+          <div class="project-card">
+            <h3>Customer Churn Analysis</h3>
+            <p>Identified at-risk customer segments using SQL cohort analysis and visualised retention trends in Power BI.</p>
+            <span class="tag">SQL</span>
+            <span class="tag">Power BI</span>
+          </div>
+
+          <div class="project-card">
+            <h3>Automated Excel Reporting</h3>
+            <p>Replaced manual weekly reports with a Power Query pipeline, cutting preparation time from 4 hours to 10 minutes.</p>
+            <span class="tag">Excel</span>
+            <span class="tag">Power Query</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section id="contact" class="contact" style="background:#fff;">
+      <div class="container">
+        <h2>Let's Work Together</h2>
+        <p style="margin-bottom:20px;">Have a data problem you'd like solved? Let's talk.</p>
+        <a href="mailto:your-email@example.com" class="btn">Email Me</a>
+      </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+      <div class="container">
+        © <span id="year"></span> Abhishek Panwar — All rights reserved.
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>
