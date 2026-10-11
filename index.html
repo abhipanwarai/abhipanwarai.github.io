@@ -248,7 +248,44 @@
         flex-direction: column;
       }
       .project-card:hover { transform: translateY(-5px); box-shadow: var(--card-shadow-hover); }
-      .project-body { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
+
+      /* PROJECT IMAGE */
+      .project-image {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        background: var(--bg-alt);
+        position: relative;
+        cursor: zoom-in;
+      }
+      .project-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease;
+      }
+      .project-card:hover .project-image img {
+        transform: scale(1.04);
+      }
+      .project-image::after {
+        content: "🔍 Click to enlarge";
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(0,0,0,0.65);
+        color: #fff;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 0.72rem;
+        font-weight: 500;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+        pointer-events: none;
+      }
+      .project-image:hover::after { opacity: 1; }
+
+      .project-body { padding: 22px; display: flex; flex-direction: column; flex-grow: 1; }
       .project-card h3 {
         color: var(--heading);
         margin-bottom: 10px;
@@ -280,6 +317,47 @@
       }
       .project-link:hover { color: var(--accent-hover); text-decoration: none; }
       .project-link svg { width: 16px; height: 16px; fill: currentColor; }
+
+      /* LIGHTBOX */
+      .lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.92);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+        cursor: zoom-out;
+        animation: fadeIn 0.25s ease;
+      }
+      .lightbox.open { display: flex; }
+      .lightbox img {
+        max-width: 100%;
+        max-height: 90vh;
+        border-radius: 8px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        cursor: default;
+      }
+      .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 24px;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.15);
+        border: none;
+        color: #fff;
+        font-size: 24px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s ease;
+      }
+      .lightbox-close:hover { background: rgba(255,255,255,0.3); }
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
       /* GITHUB REPOS */
       .github-section { background: var(--bg-alt); transition: background 0.3s ease; }
@@ -427,6 +505,8 @@
         .profile-photo { width: 130px; height: 130px; }
         .stat-number { font-size: 1.8rem; }
         .theme-toggle { top: 12px; right: 12px; width: 40px; height: 40px; font-size: 18px; }
+        .lightbox { padding: 20px 10px; }
+        .lightbox-close { top: 10px; right: 10px; }
       }
     </style>
   </head>
@@ -556,6 +636,9 @@
         <div class="projects-grid">
 
           <div class="project-card">
+            <div class="project-image" data-lightbox="./assets/customer-sales-dashboard.png">
+              <img src="./assets/customer-sales-dashboard.png" alt="Customer Sales Analysis Power BI dashboard" loading="lazy" />
+            </div>
             <div class="project-body">
               <h3>Customer Sales Analysis Combo</h3>
               <p>Analyzing customer purchasing behavior using SQL Server and visualizing insights through an interactive Power BI dashboard.</p>
@@ -572,6 +655,9 @@
           </div>
 
           <div class="project-card">
+            <div class="project-image" data-lightbox="./assets/credit-card-dashboard.png">
+              <img src="./assets/credit-card-dashboard.png" alt="Credit Card Customer Analysis Power BI dashboard" loading="lazy" />
+            </div>
             <div class="project-body">
               <h3>Credit Card Customer Analysis</h3>
               <p>Analyzing credit card customer behavior and transaction patterns using interactive Power BI dashboards.</p>
@@ -588,6 +674,9 @@
           </div>
 
           <div class="project-card">
+            <div class="project-image" data-lightbox="./assets/online-retail-dashboard.png">
+              <img src="./assets/online-retail-dashboard.png" alt="Online Retail Sales dashboard" loading="lazy" />
+            </div>
             <div class="project-body">
               <h3>Online Retail Sales Analysis</h3>
               <p>Comprehensive sales performance analysis using Python and Power BI — covering revenue trends, customer activity, product performance, and geographic insights between April and June 2022. Transforms raw sales data into actionable business insights through data cleaning, KPI tracking, and interactive dashboards.</p>
@@ -701,6 +790,12 @@
       </div>
     </footer>
 
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+      <img src="" alt="Enlarged dashboard preview" id="lightboxImage" />
+    </div>
+
     <script>
       /* YEAR */
       document.getElementById('year').textContent = new Date().getFullYear();
@@ -755,9 +850,46 @@
       }, { threshold: 0.5 });
       statNumbers.forEach(el => statsObserver.observe(el));
 
+      /* LIGHTBOX */
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImage = document.getElementById('lightboxImage');
+      const lightboxClose = document.getElementById('lightboxClose');
+
+      document.querySelectorAll('.project-image').forEach(container => {
+        container.addEventListener('click', () => {
+          const src = container.getAttribute('data-lightbox');
+          if (src) {
+            lightboxImage.src = src;
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden';
+          }
+        });
+      });
+
+      function closeLightbox() {
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+        setTimeout(() => { lightboxImage.src = ''; }, 200);
+      }
+
+      lightboxClose.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeLightbox();
+      });
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+          closeLightbox();
+        }
+      });
+
       /* GITHUB REPOS */
       const GITHUB_USERNAME = 'Abhipanwarai';
-      const EXCLUDED_REPOS = ['abhipanwarai.github.io']; // repos to hide from this section
+      const EXCLUDED_REPOS = ['abhipanwarai.github.io'];
       const reposContainer = document.getElementById('reposContainer');
 
       const LANG_COLORS = {
