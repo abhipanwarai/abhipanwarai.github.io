@@ -462,8 +462,9 @@
     <section class="about fade-in">
       <div class="container">
         <h2>About Me</h2>
-        <p>I help businesses turn messy, scattered data into clear dashboards and reliable reports. With hands-on experience in <strong>Power BI</strong>, <strong>SQL</strong>, and <strong>Excel</strong>, I build analytics solutions that answer the questions decision-makers actually care about.</p>
-        <p>Whether you need a one-time dashboard, a recurring reporting pipeline, or an audit of your existing metrics — I deliver work that's clean, fast, and easy for your team to own.</p>
+        <p>I'm <strong>ABHISHEK</strong>, a Freelance Data Analyst helping businesses turn messy data into clear dashboards, automated reports, and actionable insights.</p>
+        <p>I work with <strong>Excel</strong>, <strong>Google Sheets</strong>, <strong>SQL</strong>, <strong>Python</strong>, <strong>Power BI</strong>, <strong>Tableau</strong>, <strong>Looker</strong>, <strong>Microsoft Fabric</strong>, and <strong>Databricks</strong> to help teams understand performance, spot trends, and make smarter decisions.</p>
+        <p>From data cleaning and SQL analysis to interactive Power BI and Tableau dashboards, I build practical reporting solutions that save time and improve decision-making.</p>
       </div>
     </section>
 
@@ -668,46 +669,23 @@
       }, { threshold: 0.5 });
       statNumbers.forEach(el => statsObserver.observe(el));
 
-      /* GITHUB REPOS — auto-fetch top 6 recently updated */
+      /* GITHUB REPOS */
       const GITHUB_USERNAME = 'Abhipanwarai';
       const reposContainer = document.getElementById('reposContainer');
 
       const LANG_COLORS = {
-        JavaScript: '#f1e05a',
-        TypeScript: '#3178c6',
-        Python: '#3572A5',
-        HTML: '#e34c26',
-        CSS: '#563d7c',
-        Jupyter: '#DA5B0B',
-        'Jupyter Notebook': '#DA5B0B',
-        R: '#198CE7',
-        Java: '#b07219',
-        'C++': '#f34b7d',
-        C: '#555555',
-        'C#': '#178600',
-        Go: '#00ADD8',
-        Rust: '#dea584',
-        Ruby: '#701516',
-        PHP: '#4F5D95',
-        Shell: '#89e051',
-        Vue: '#41b883',
-        Svelte: '#ff3e00',
-        Dart: '#00B4AB',
-        Kotlin: '#A97BFF',
-        Swift: '#F05138',
-        SQL: '#e38c00',
-        'PowerShell': '#012456',
-        PowerShell: '#012456'
+        JavaScript: '#f1e05a', TypeScript: '#3178c6', Python: '#3572A5',
+        HTML: '#e34c26', CSS: '#563d7c', Jupyter: '#DA5B0B',
+        'Jupyter Notebook': '#DA5B0B', R: '#198CE7', Java: '#b07219',
+        'C++': '#f34b7d', C: '#555555', 'C#': '#178600', Go: '#00ADD8',
+        Rust: '#dea584', Ruby: '#701516', PHP: '#4F5D95', Shell: '#89e051',
+        Vue: '#41b883', Svelte: '#ff3e00', Dart: '#00B4AB', Kotlin: '#A97BFF',
+        Swift: '#F05138', SQL: '#e38c00', PowerShell: '#012456'
       };
 
       function escapeHtml(str) {
         if (!str) return '';
-        return str
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/"/g, '&quot;')
-          .replace(/'/g, '&#039;');
+        return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
       }
 
       function timeAgo(dateStr) {
@@ -724,32 +702,23 @@
 
       async function loadRepos() {
         try {
-          const res = await fetch(
-            `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`
-          );
+          const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`);
           if (!res.ok) throw new Error('GitHub API error ' + res.status);
           const repos = await res.json();
-
-          const filtered = repos
-            .filter(r => !r.fork && !r.archived)
+          const filtered = repos.filter(r => !r.fork && !r.archived)
             .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at))
             .slice(0, 6);
 
           if (!filtered.length) {
-            reposContainer.innerHTML =
-              '<div class="repos-loading">No public repositories found.</div>';
+            reposContainer.innerHTML = '<div class="repos-loading">No public repositories found.</div>';
             return;
           }
 
           reposContainer.innerHTML = filtered.map(repo => {
             const lang = repo.language;
             const color = (lang && LANG_COLORS[lang]) || '#8b949e';
-            const langHtml = lang
-              ? `<span class="repo-lang"><span class="lang-dot" style="background:${color}"></span>${escapeHtml(lang)}</span>`
-              : '';
-            const desc = repo.description
-              ? escapeHtml(repo.description)
-              : '<em>No description provided.</em>';
+            const langHtml = lang ? `<span class="repo-lang"><span class="lang-dot" style="background:${color}"></span>${escapeHtml(lang)}</span>` : '';
+            const desc = repo.description ? escapeHtml(repo.description) : '<em>No description provided.</em>';
 
             return `
               <div class="repo-card">
